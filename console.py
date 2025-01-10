@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Module for the command interpreter.
+Module for the BaseModel class.
 """
 import cmd
 
@@ -27,7 +27,9 @@ class HBNBCommand(cmd.Cmd):
 
     def emptyline(self):
         """
-        Do nothing on an empty line + ENTER.
+        Do nothing on an empty line or a line with only spaces + ENTER.
         """
+        pass
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
