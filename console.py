@@ -1,34 +1,30 @@
-#!/usr/bin/python
-"""
-Console for AirBnB project.
-"""
+#!/usr/bin/python3
 import cmd
 
 class HBNBCommand(cmd.Cmd):
     """
-    Console for AirBnB project
+    Command interpreter class for the AirBnB Clone project.
     """
     prompt = "(hbnb) "
 
     def do_quit(self, arg):
         """
-        Quit command to exit the program
+        Quit command to exit the program.
+        Usage: quit
         """
         return True
 
-    def help_quit(self, arg):
-        """
-        Handle the help_quit
-        """
-        print("Quit command to exit the program")
-
     def do_EOF(self, arg):
         """
-        Handle the EOF (end-of-file) signal.
+        EOF command to exit the program.
+        Usage: Ctrl+D
         """
         print()
         return True
 
-
-if __name__ == "__main__":
+    def emptyline(self):
+        """
+        Do nothing on an empty line + ENTER.
+        """
+if __name__ == '__main__':
     HBNBCommand().cmdloop()
