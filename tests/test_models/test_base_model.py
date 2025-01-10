@@ -51,7 +51,6 @@ class TestBasemodel(unittest.TestCase):
         string that is a valid representation of the instance. The string
         should start with the class name in square brackets, and should
         include the instance's id and to_dict() representation.
-        
         """
         my_model = BaseModel()
         self.assertTrue(str(my_model).startswith("[BaseModel]"))

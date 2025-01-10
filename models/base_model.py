@@ -1,3 +1,7 @@
+#!/usr/bin/python3
+"""
+Module for the BaseModel class.
+"""
 import uuid
 from datetime import datetime
 
@@ -12,7 +16,7 @@ class BaseModel:
 
     def __str__(self):
         """Return string representation of the BaseModel instance."""
-        return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
+        return f"[{self.__class__.__name__}] ({self.id}) {self.to_dict()}"
 
     def save(self):
         """Update the `updated_at` attribute with the current datetime."""
