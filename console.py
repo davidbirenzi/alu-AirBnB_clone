@@ -39,3 +39,22 @@ def emptyline(self):
         new_instance = classes[arg]()
         new_instance.save()
         print(new_instance.id)
+
+def do_show(self, arg):
+        """Prints the string representation of an instance based on class name and id."""
+        args = arg.split()
+        if len(args) == 0:
+            print("** class name missing **")
+            return
+        if args[0] not in classes:
+            print("** class doesn't exist **")
+            return
+        if len(args) < 2:
+            print("** instance id missing **")
+            return
+        key = f"{args[0]}.{args[1]}"
+        obj = storage.all().get(key)
+        if not obj:
+            print("** no instance found **")
+        else:
+            print(obj)
