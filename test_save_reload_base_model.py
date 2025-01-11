@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""
+Contains the entry point of the command interpreter.
+"""
 from models import storage
 from models.base_model import BaseModel
 
