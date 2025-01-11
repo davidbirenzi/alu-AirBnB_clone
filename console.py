@@ -104,3 +104,24 @@ def do_all(self, arg):
         if len(args) < 2:
             print("** instance id missing **")
             return
+                    key = f"{args[0]}.{args[1]}"
+        obj = storage.all().get(key)
+        if not obj:
+            print("** no instance found **")
+            return
+        if len(args) < 3:
+            print("** attribute name missing **")
+            return
+        if len(args) < 4:
+            print("** value missing **")
+            return
+        attr_name = args[2]
+        attr_value = args[3].strip('"')
+        # Cast the value to the correct type
+        if attr_value.isdigit():
+            attr_value = int(attr_value)
+        elif attr_value.replace('.', '', 1).isdigit():
+            attr_value = float(attr_value)
+        setattr(obj, attr_name, attr_value)
+        obj.save()
+
