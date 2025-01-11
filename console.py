@@ -8,7 +8,6 @@ import cmd
 
 class HBNBCommand(cmd.Cmd):
     """Command interpreter for AirBnB clone."""
-    
     # Custom prompt
     prompt = "(hbnb) "
 
