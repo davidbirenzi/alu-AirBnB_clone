@@ -10,6 +10,7 @@ from models import storage
 # List of valid classes
 classes = {"BaseModel": BaseModel}
 
+
 class HBNBCommand(cmd.Cmd):
     """Command interpreter for AirBnB clone."""
 
@@ -24,7 +25,7 @@ class HBNBCommand(cmd.Cmd):
         print()
         return True
 
-def emptyline(self):
+    def emptyline(self):
         """Override the default behavior to do nothing on an empty line."""
         pass
 
@@ -40,7 +41,7 @@ def emptyline(self):
         new_instance.save()
         print(new_instance.id)
 
-def do_show(self, arg):
+    def do_show(self, arg):
         """Prints the string representation of an instance based on class name and id."""
         args = arg.split()
         if len(args) == 0:
@@ -59,7 +60,7 @@ def do_show(self, arg):
         else:
             print(obj)
 
-def do_destroy(self, arg):
+    def do_destroy(self, arg):
         """Deletes an instance based on the class name and id."""
         args = arg.split()
         if len(args) == 0:
@@ -78,7 +79,7 @@ def do_destroy(self, arg):
             del storage.all()[key]
             storage.save()
 
-def do_all(self, arg):
+    def do_all(self, arg):
         """Prints all string representations of all instances."""
         objects = storage.all()
         if not arg:
@@ -104,7 +105,7 @@ def do_all(self, arg):
         if len(args) < 2:
             print("** instance id missing **")
             return
-                    key = f"{args[0]}.{args[1]}"
+        key = f"{args[0]}.{args[1]}"
         obj = storage.all().get(key)
         if not obj:
             print("** no instance found **")
@@ -125,7 +126,7 @@ def do_all(self, arg):
         setattr(obj, attr_name, attr_value)
         obj.save()
 
+
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
-
 
