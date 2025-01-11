@@ -77,3 +77,30 @@ def do_destroy(self, arg):
         else:
             del storage.all()[key]
             storage.save()
+
+def do_all(self, arg):
+        """Prints all string representations of all instances."""
+        objects = storage.all()
+        if not arg:
+            print([str(obj) for obj in objects.values()])
+            return
+        if arg not in classes:
+            print("** class doesn't exist **")
+            return
+        print([str(obj) for key, obj in objects.items() if key.startswith(arg)])
+
+    def do_update(self, arg):
+        """
+        Updates an instance based on the class name and id by adding or updating attribute.
+        Usage: update <class name> <id> <attribute name> "<attribute value>"
+        """
+        args = arg.split()
+        if len(args) == 0:
+            print("** class name missing **")
+            return
+        if args[0] not in classes:
+            print("** class doesn't exist **")
+            return
+        if len(args) < 2:
+            print("** instance id missing **")
+            return
