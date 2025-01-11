@@ -2,14 +2,15 @@
 """
 Module for the BaseModel class.
 """
+
 import uuid
 from datetime import datetime
 import models
 
 class BaseModel:
-    """Defines common attributes/methods for other classes."""
+    """A base class for all hbnb models"""
     def __init__(self, *args, **kwargs):
-        """Initialize the BaseModel with unique ID, created_at, and updated_at."""
+        """initialize the data model"""
         time_format = "%Y-%m-%dT%H:%M:%S.%f"
         if kwargs:
             for key, value in kwargs.items():
@@ -20,13 +21,12 @@ class BaseModel:
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
-            self.updated_at = self.created_at
+            self.updated_at = datetime.now()
 
         models.storage.new(self)
 
     def __str__(self):
-        """Return string representation of the BaseModel instance."""
-        return f"[{self.__class__.__name__}] ({self.id}) {self.to_dict()}"
+        return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
     def save(self):
         """
@@ -34,12 +34,12 @@ class BaseModel:
         """
         self.updated_at = datetime.now()
         models.storage.save()
+
     def to_dict(self):
-        """Return a dictionary containing all keys/values of the instance."""
-        # Copy __dict__ and add `__class__` key
-        obj_dict = self.__dict__.copy()
-        obj_dict["__class__"] = self.__class__.__name__
-        # Convert datetime attributes to ISO format
-        obj_dict["created_at"] = self.created_at.isoformat()
-        obj_dict["updated_at"] = self.updated_at.isoformat()
-        return obj_dict
+        """Returns a dictionary containing all keys/values of __dict__
+        of the instance"""
+        new_dict = self.__dict__.copy()
+        new_dict["__class__"] = self.__class__.__name__
+        new_dict["created_at"] = self.created_at.isoformat()
+        new_dict["updated_at"] = self.updated_at.isoformat()
+        return new_dict
