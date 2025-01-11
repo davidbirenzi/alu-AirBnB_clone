@@ -23,3 +23,19 @@ class HBNBCommand(cmd.Cmd):
         """Exit the program with EOF signal."""
         print()
         return True
+
+def emptyline(self):
+        """Override the default behavior to do nothing on an empty line."""
+        pass
+
+    def do_create(self, arg):
+        """Creates a new instance of BaseModel, saves it, and prints the id."""
+        if not arg:
+            print("** class name missing **")
+            return
+        if arg not in classes:
+            print("** class doesn't exist **")
+            return
+        new_instance = classes[arg]()
+        new_instance.save()
+        print(new_instance.id)
