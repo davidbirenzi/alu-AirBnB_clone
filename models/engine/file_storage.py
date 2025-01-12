@@ -32,13 +32,14 @@ class FileStorage:
 
     def reload(self):
         """
-        Deserializes the JSON file to __objects, if the JSON file exists.
-        If the file doesn't exist, does nothing. No exception is raised.
+        Deserializes the JSON file to __objects if it exists.
         """
-
         if os.path.exists(FileStorage.__file_path):
             with open(FileStorage.__file_path, "r", encoding="utf-8") as file:
-                for key, value in json.load(file).items():
-                    FileStorage.__objects[key] = BaseModel(**value)
+                objects = json.load(file)
+                for key, value in objects.items():
+                    class_name = value["__class__"]
+                    if class_name == "User":
+                        FileStorage.__objects[key] = User(**value)
         else:
             pass
