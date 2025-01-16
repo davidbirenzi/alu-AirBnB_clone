@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Contains the entry point of the command interpreter."""
+"""init file for models"""
 
 from models.engine.file_storage import FileStorage
 
