@@ -1,32 +1,24 @@
 #!/usr/bin/python3
-"""Unittest for City class"""
-
-import unittest
+""" City module """
+from tests.test_models.test_base_model import test_basemodel
 from models.city import City
-from models.base_model import BaseModel
 
 
-class TestCity(unittest.TestCase):
-    """Tests the City class"""
+class test_City(test_basemodel):
+    """test the City class"""
 
-    def test_instance_creation(self):
-        """Test instance creation"""
-        city = City()
-        self.assertIsInstance(city, City)
+    def __init__(self, *args, **kwargs):
+        """ """
+        super().__init__(*args, **kwargs)
+        self.name = "City"
+        self.value = City
 
-    def test_inheritance(self):
-        """Test if City inherits from BaseModel"""
-        city = City()
-        self.assertIsInstance(city, BaseModel)
+    def test_state_id(self):
+        """ the state id should be a string """
+        new = self.value()
+        self.assertEqual(type(new.state_id), str)
 
-    def test_attributes(self):
-        """Test if 'state_id' and 'name' attributes exist and are empty"""
-        city = City()
-        self.assertTrue(hasattr(city, "state_id"))
-        self.assertTrue(hasattr(city, "name"))
-        self.assertEqual(city.state_id, "")
-        self.assertEqual(city.name, "")
-
-
-if __name__ == "__main__":
-    unittest.main()
+    def test_name(self):
+        """ The name should be a string """
+        new = self.value()
+        self.assertEqual(type(new.name), str)

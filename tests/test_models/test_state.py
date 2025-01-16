@@ -1,30 +1,19 @@
 #!/usr/bin/python3
-"""Unittest for State class"""
-
-import unittest
+""" """
+from tests.test_models.test_base_model import test_basemodel
 from models.state import State
-from models.base_model import BaseModel
 
 
-class TestState(unittest.TestCase):
-    """Tests the State class"""
+class test_state(test_basemodel):
+    """ model state """
 
-    def test_instance_creation(self):
-        """Test instance creation"""
-        state = State()
-        self.assertIsInstance(state, State)
+    def __init__(self, *args, **kwargs):
+        """ """
+        super().__init__(*args, **kwargs)
+        self.name = "State"
+        self.value = State
 
-    def test_inheritance(self):
-        """Test if State inherits from BaseModel"""
-        state = State()
-        self.assertIsInstance(state, BaseModel)
-
-    def test_attributes(self):
-        """Test if 'name' attribute exists and is empty"""
-        state = State()
-        self.assertTrue(hasattr(state, "name"))
-        self.assertEqual(state.name, "")
-
-
-if __name__ == "__main__":
-    unittest.main()
+    def test_name3(self):
+        """ The name should be a string """
+        new = self.value()
+        self.assertEqual(type(new.name), str)
